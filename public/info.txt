@@ -1,0 +1,45 @@
+### Primeiro passo instalar postgres
+
+# Query - CREATE DATABASE gymmanager 
+-> Run Query
+-> new schema, nomeie a tabela e crie
+-> Adicione as colunas passando os tipo de dados
+
+# Reestruturando 
+-> Copie a pasta que será refeita (apague node_modules e package-lock.json)
+-> crie a pasta:
+  src:
+    app:
+      controllers
+      views
+-> Delete o data.json
+-> No package.json inclua o path do arquivo server.js e no --files
+-> Em routes.js adicione o path dos arquvos em controllers
+-> Em server.js adicione o path na nunjucks.configure
+  src:
+    lib:
+      utils.js
+
+-> Delete data e fs no arquivo do controllers
+-> utilize o module.exports para utilizar o short-hand-object-property e adicione os paths 
+    module.exports = {
+      index(req, res) {}
+    } 
+-> repita o proceso para os arquivos do controller, limpando, deixe só o return
+
+## Para a conexao com banco de dados > npm install pg e npm install (baiar todas as dependencias)
+  src:
+    config:
+      db.js
+
+-> No db.js sera feita a conexao com o bamco de dados 
+-> Desestruture { Pool }do "pg" para que seja feito o login direto com o DB
+-> Exporte um novo objeto Pool passando as informacoes:
+  user,
+  password,
+  host,
+  port,
+  DATABASE
+
+
+  
