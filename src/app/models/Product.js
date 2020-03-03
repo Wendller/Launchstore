@@ -20,7 +20,7 @@ module.exports = {
     `
 
     //! R$ 1,00
-    data.price = data.price.replace(/\D/g, "");
+    data.price = data.price.replace(/\D/g,"");
     //? 100
 
     const values = [
