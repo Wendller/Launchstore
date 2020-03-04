@@ -1,9 +1,9 @@
 const db = require("../../config/db");
-
+const fs = require("fs");
 
 module.exports = {
 
-  create(filename, path, product_id) {
+  create(data, product_id) {
     //? Criando query para inserir dados 
     const query = `
       INSERT INTO files ( 
@@ -15,14 +15,28 @@ module.exports = {
     `
 
     const values = [
-      filename,
-      path,
+      data.filename,
+      data.path,
       product_id
     ]
 
     // Coxexao com o DB
 
     return db.query(query, values);
+
+  },
+  async delete(id) {
+
+    try {
+      const result = await db.query(`SELECT * FROM files WHERE id = ${id}`)
+      const file = result.rows[0]
+
+      fs.unlinkSync(file.path)
+
+      return db.query(`DELETE FROM files WHERE id = ${id}`)
+    }catch(err) {
+      console.error(err)
+    }
 
   }
 
